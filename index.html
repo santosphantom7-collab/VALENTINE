@@ -1,1 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Valentine’s Day Kiki ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:linear-gradient(135deg,#ff2d7a,#ff7eb3);
+  min-height:100vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+.hearts span{
+  position:fixed;
+  bottom:-20px;
+  animation:float 12s linear infinite;
+  font-size:24px;
+  z-index:1;
+}
+
+@keyframes float{
+  0%{transform:translateY(0) scale(.6);opacity:0;}
+  15%{opacity:1;}
+  100%{transform:translateY(-130vh) scale(1.6);opacity:0;}
+}
+
+.envelope{
+  width:320px;
+  height:220px;
+  background:#ff5f9e;
+  border-radius:10px;
+  position:relative;
+  cursor:pointer;
+  margin:100px auto;
+  animation:pulse 2s infinite;
+  z-index:2;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+
+.flap{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:100%;
+  background:#ff2d7a;
+  clip-path:polygon(0 0,100% 0,50% 50%);
+}
+
+.envelope h2{
+  position:absolute;
+  bottom:25px;
+  width:100%;
+  text-align:center;
+  color:white;
+}
+
+.card{
+  display:none;
+  background:white;
+  padding:35px;
+  max-width:900px;
+  border-radius:25px;
+  box-shadow:0 15px 45px rgba(0,0,0,.3);
+  animation:fade 2s;
+  text-align:center;
+  margin:60px auto 150px;
+  z-index:2;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:scale(.9);}
+  to{opacity:1;transform:scale(1);}
+}
+
+h1{
+  font-family:'Great Vibes', cursive;
+  color:#ff2d7a;
+  font-size:55px;
+}
+
+h2{
+  color:#ff2d7a;
+  margin-top:30px;
+}
+
+.poem{
+  background:#fff0f6;
+  padding:25px;
+  border-radius:15px;
+  font-style:italic;
+  margin-top:20px;
+  line-height:1.8;
+}
+
+p{
+  line-height:1.9;
+  font-size:16px;
+}
+
+button{
+  background:linear-gradient(45deg,#ff2d7a,#ff7eb3);
+  border:none;
+  padding:14px 35px;
+  color:white;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:30px;
+}
+
+.secret{
+  display:none;
+  margin-top:25px;
+  font-weight:600;
+  color:#ff2d7a;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+</audio>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="envelope" onclick="openLetter()">
+  <div class="flap"></div>
+  <h2>Tap To Open My Heart 💌</h2>
+</div>
+
+<div class="card" id="card">
+
+  <h1>Happy Valentine’s Day My Kiki ❤️</h1>
+
+  <p id="typeText"></p>
+
+  <h2>🌹 A Letter From My Heart 🌹</h2>
+
+  <p>
+    My love, from the moment you walked into my life, everything changed.  
+    You became my peace when my mind was restless, my smile when my days were heavy,  
+    and my happiness when the world felt cold.  
+    Loving you has been the most beautiful thing I have ever experienced.
+  </p>
+
+  <p>
+    Every time I hear your voice, my heart softens.  
+    Every time I see your smile, my whole world lights up.  
+    You are not just my girlfriend — you are my best friend, my safe place, my comfort, and my forever person.
+  </p>
+
+  <p>
+    I want to be the man who protects your heart, who supports your dreams,  
+    who stands beside you in every season of life, and who loves you deeper every single day.
+  </p>
+
+  <div class="poem">
+    Kiki, my angel, my sweetest delight,<br>
+    You are my morning and my quiet night.<br>
+    In your embrace, I find my peace,<br>
+    With you, all worries slowly cease.<br><br>
+
+    Your love is gentle, pure, and true,<br>
+    A beautiful dream I’m living with you.<br>
+    Through every challenge, through every test,<br>
+    I promise to love you with my very best.<br><br>
+
+    Forever with you is all I desire,<br>
+    You are my heartbeat, my soul, my fire.<br>
+    In this lifetime and the ones to be,<br>
+    My heart will always belong to **Kiki**. ❤️
+  </div>
+
+  <h2>💖 A Promise 💖</h2>
+
+  <p>
+    I promise to love you honestly, protect you fiercely, respect you deeply,  
+    and choose you every single day — no matter what life brings our way.  
+    You are my answered prayer, my miracle, my forever.
+  </p>
+
+  <button onclick="showSecret()">Tap For My Final Message 💝</button>
+
+  <div class="secret" id="secret">
+    💍 My Kiki, you are my today, my tomorrow, and my forever.  
+    I choose you. Always. 💍
+  </div>
+
+</div>
+
+<script>
+const text="To my beautiful Kiki — this is my heart speaking. Every moment with you feels magical, and every day I fall deeper in love with you ❤️";
+
+let i=0;
+function typeWriter(){
+  if(i<text.length){
+    document.getElementById("typeText").innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(typeWriter,50);
+  }
+}
+
+function openLetter(){
+  document.querySelector(".envelope").style.display="none";
+  document.getElementById("card").style.display="block";
+  typeWriter();
+}
+
+function showSecret(){
+  document.getElementById("secret").style.display="block";
+}
+
+const heartBox=document.getElementById("hearts");
+for(let i=0;i<45;i++){
+  let h=document.createElement("span");
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDelay=Math.random()*12+"s";
+  heartBox.appendChild(h);
+}
+</script>
+
+</body>
+</html>
